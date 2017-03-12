@@ -1,0 +1,27 @@
+" Enabling pathogen
+execute pathogen#infect()
+
+" Disables vi compatibility
+set nocompatible
+
+" Enables highlighting
+syntax on
+
+" Identation
+filetype plugin indent on
+
+" Set line numbers
+set number
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+" Show file stats
+set ruler
+
+" Encoding
+set encoding=utf-8
+
+" Rendering
+set ttyfast
+
+" NERDTree
+nnoremap <C-\> :NERDTreeToggle<CR>
