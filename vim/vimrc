@@ -37,3 +37,7 @@ set showmatch
 
 " NERDTree
 nnoremap <C-\> :NERDTreeToggle<CR>
+
+" NERDTree shows hidden files
+let NERDTreeShowHidden=1
+
