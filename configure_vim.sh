@@ -77,3 +77,6 @@ then
         print_success "Done!"
 fi
 
+# Make this scritp to remove itself
+rm -- "$0"
+
