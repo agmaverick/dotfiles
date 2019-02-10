@@ -12,15 +12,15 @@ YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 print_warning () {
-	printf "${RED}WARNING: $1 ${NC}\n"
+    printf "${RED}WARNING: $1 ${NC}\n"
 }
 
 print_info () {
-	printf "${YELLOW}INFO: $1 ${NC}\n"
+    printf "${YELLOW}INFO: $1 ${NC}\n"
 }
 
 print_success () {
-	printf "${GREEN}$1 ${NC}\n"
+    printf "${GREEN}$1 ${NC}\n"
 }
 
 ask_confirmation (){
@@ -33,7 +33,7 @@ ask_confirmation (){
         *)
             CONFIRMATION="no"
             ;;
-    esac    
+    esac
 }
 
 TIMESTAMP=$(date +%s)
@@ -41,24 +41,23 @@ TIMESTAMP=$(date +%s)
 # Validate if .vim dir or .vimrc file exist
 if [ -f $HOME/.vimrc ];
 then
-	print_warning ".vimrc file already exists!"
-	ask_confirmation
+    print_warning ".vimrc file already exists!"
+    ask_confirmation
 
-	if [ $CONFIRMATION = "yes" ];
-	then
-		if [ -d $HOME/.vim ];
-		then
-			mv $HOME/.vim /tmp/"vim_bak-${TIMESTAMP}"
-			print_info "Existing .vim directory has been moved to /tmp/vim_bak-${TIMESTAMP}"
-		    mv $HOME/.vimrc /tmp/"vimrc_bak-${TIMESTAMP}"
-			print_info "Existing .vimrc file has been moved to /tmp/vimrc_bak-${TIMESTAMP}"
-		else
-			mv $HOME/.vimrc /tmp/"vimrc_bak-${TIMESTAMP}"
-			print_info "Existing .vimrc file has been moved to /tmp/vimrc_bak-${TIMESTAMP}"
-		fi
-     	else
-		exit 1	
-	fi				
+    if [ $CONFIRMATION = "yes" ];
+    then
+        if [ -d $HOME/.vim ];
+        then
+            mv $HOME/.vim /tmp/"vim_bak-${TIMESTAMP}"
+            print_info "Existing .vim directory has been moved to /tmp/vim_bak-${TIMESTAMP}"
+        fi
+
+        mv $HOME/.vimrc /tmp/"vimrc_bak-${TIMESTAMP}"
+        print_info "Existing .vimrc file has been moved to /tmp/vimrc_bak-${TIMESTAMP}"
+
+    else
+        exit 1
+    fi
 fi
 
 echo "Cloning dotfiles repository..."
@@ -72,7 +71,7 @@ mv $HOME/$DIR_NAME/vim $HOME/.vim
 print_success "New .vim folder placed in $HOME directory"
 
 # Deleting dotfiles folder as it's not longer needed
-if [ -d $HOME/.vim ] && [ -d $HOME/$DIR_NAME ]; 
+if [ -d $HOME/.vim ] && [ -d $HOME/$DIR_NAME ];
 then
         rm -rf $HOME/$DIR_NAME
         print_success "Done!"
