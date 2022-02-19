@@ -62,18 +62,22 @@ fi
 
 echo "Cloning dotfiles repository..."
 DIR_NAME="dotfiles-${TIMESTAMP}"
-git clone --recursive https://github.com/AGmaverick/dotfiles.git $HOME/$DIR_NAME
+git clone https://github.com/AGmaverick/dotfiles.git /tmp/$DIR_NAME
 
-mv $HOME/$DIR_NAME/vim/vimrc $HOME/.vimrc
+mv /tmp/$DIR_NAME/vimrc $HOME/.vimrc
 print_success "New .vimrc file placed in $HOME directory"
 
-mv $HOME/$DIR_NAME/vim $HOME/.vim
+mkdir $HOME/.vim
 print_success "New .vim folder placed in $HOME directory"
 
+echo "Cloning NERDTree..."
+git clone https://github.com/preservim/nerdtree.git $HOME/.vim/pack/vendor/start/nerdtree
+print_success "NERDTree plugin cloned..."
+
 # Deleting dotfiles folder as it's not longer needed
-if [ -d $HOME/.vim ] && [ -d $HOME/$DIR_NAME ];
+if [ -d $HOME/.vim ] && [ -d /tmp/$DIR_NAME ];
 then
-        rm -rf $HOME/$DIR_NAME
+        rm -rf /tmp/$DIR_NAME
         print_success "Done!"
 fi
 
