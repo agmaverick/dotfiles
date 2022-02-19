@@ -1,7 +1,5 @@
 #! /usr/bin/env bash
 
-# Install VIM plugins
-# using https://github.com/agmaverick/dotfiles
 
 set -e
 
@@ -38,6 +36,10 @@ ask_confirmation (){
 
 TIMESTAMP=$(date +%s)
 
+
+# Install VIM plugins
+# using https://github.com/agmaverick/dotfiles
+
 # Validate if .vim dir or .vimrc file exist
 if [ -f $HOME/.vimrc ];
 then
@@ -64,7 +66,7 @@ echo "Cloning dotfiles repository..."
 DIR_NAME="dotfiles-${TIMESTAMP}"
 git clone https://github.com/AGmaverick/dotfiles.git /tmp/$DIR_NAME
 
-mv /tmp/$DIR_NAME/vimrc $HOME/.vimrc
+mv /tmp/$DIR_NAME/vim/vimrc $HOME/.vimrc
 print_success "New .vimrc file placed in $HOME directory"
 
 mkdir $HOME/.vim
