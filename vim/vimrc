@@ -24,6 +24,7 @@ set smartindent    " reacts to sintax/style fo the code
 
 "== Line numbers ==
 set number         " show absolute line numbers
+nnoremap <silent> <C-]> :set rnu!<CR> " toggle relative numbers
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 
@@ -31,6 +32,11 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 " set cursorline      " show cursor line
 set colorcolumn=120   " set rule on column 120
 highlight ColorColumn ctermbg=0 guibg=lightgrey 
+
+
+"== Shortcuts =="
+nnoremap <silent> [<space>  :<c-u>put!=repeat([''],v:count)<bar>']+1<cr> " Add one line below
+nnoremap <silent> ]<space>  :<c-u>put =repeat([''],v:count)<bar>'[-1<cr> " Add one line above
 
 
 "== NERDTree ==
