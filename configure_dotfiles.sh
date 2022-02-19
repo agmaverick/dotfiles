@@ -74,6 +74,7 @@ print_success "New .vim folder placed in $HOME directory"
 
 echo "Cloning NERDTree..."
 git clone https://github.com/preservim/nerdtree.git $HOME/.vim/pack/vendor/start/nerdtree
+vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 print_success "NERDTree plugin cloned..."
 
 # Deleting dotfiles folder as it's not longer needed
