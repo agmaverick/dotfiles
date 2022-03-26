@@ -7,6 +7,7 @@ set encoding=utf-8 " encoding
 set ttyfast        " rendering
 set noswapfile     " disable creation of swap files
 set ruler          " show file stats
+set incsearch      " incremental search
 
 
 "== Sintax highlighting ==
