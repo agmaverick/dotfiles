@@ -34,6 +34,12 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 set colorcolumn=120   " set rule on column 120
 highlight ColorColumn ctermbg=0 guibg=lightgrey 
 
+"== Remaps == 
+let mapleader = " "
+map <silent><leader>h :wincmd h<CR>
+map <silent><leader>j :wincmd j<CR>
+map <silent><leader>k :wincmd k<CR>
+map <silent><leader>l :wincmd l<CR>
 
 "== Shortcuts =="
 nnoremap <silent> [<space>  :<c-u>put!=repeat([''],v:count)<bar>']+1<cr> " Add one line below
