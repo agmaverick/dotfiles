@@ -77,6 +77,10 @@ git clone https://github.com/preservim/nerdtree.git $HOME/.vim/pack/vendor/start
 vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 print_success "NERDTree plugin cloned..."
 
+echo "Cloning Gruvbox theme"
+git clone https://github.com/morhetz/gruvbox.git $HOME/.vim/pack/default/start/gruvbox
+print_success "Gruvbox theme cloned..."
+
 # Deleting dotfiles folder as it's not longer needed
 if [ -d $HOME/.vim ] && [ -d /tmp/$DIR_NAME ];
 then
