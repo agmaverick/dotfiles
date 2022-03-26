@@ -44,3 +44,6 @@ nnoremap <silent> ]<space>  :<c-u>put =repeat([''],v:count)<bar>'[-1<cr> " Add o
 nnoremap <C-\> :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1             " shows hidden files
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " close NERDTree if it's the last window
+
+"== Gruvbox ==
+autocmd vimenter * ++nested colorscheme gruvbox
