@@ -1,0 +1,88 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+# Set the directory where we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download ZINIT (ZSH plugin manager) if it hasn't been download yet
+if [ ! -d "$ZINIT_HOME" ]; then
+        mkdir -p "$(dirname $ZINIT_HOME)"
+        git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load Zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+#----------- Plugins --------------
+# Add Powerlevel10k (zen prompt)
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# Prompt command syntax higlighting
+zinit light zsh-users/zsh-syntax-highlighting
+
+# Command auto-completion
+zinit light zsh-users/zsh-completions
+autoload -U compinit && compinit
+zinit cdreplay -q
+
+# Auto-suggestions based on history
+zinit light zsh-users/zsh-autosuggestions
+
+# Enable autocompletion for Fuzzy Finder
+zinit light Aloxaf/fzf-tab
+
+#----------- Snippets --------------
+#zinit snippet OMZP::git
+#zinit snippet OMZP::aws
+#zinit snippet OMZP::kubectl
+#zinit snippet OMZP::kubectx
+#zinit snippet OMZP::command-not-found
+
+# ZSH history file settings
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+# ZSH hisroty options
+# Apeend any command to the history file rather than overwrite it
+setopt appendhistory
+# Share history accross multiple windows and session
+setopt sharehistory
+# Prevent to save command to history when prefixing space, useful for sensitive data 
+setopt hist_ignore_space
+# Following 3 lines prevent to save duplicates to history file
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+# Prevents duplicates to be shown in history searchs
+setopt hist_find_no_dups
+
+# Keybindings
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+
+# Shell integrations
+# Add Homebrew to Path
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# Enable Fuzzy-Finder
+eval "$(fzf --zsh)"
+
+# Aliases
+alias ls='ls --color'
+alias devbox="docker run -ti -v ~/Workspace/Dev-home:/home/agarcia -h ubuntuarm ubuntuarm:latest bash"
+alias akamai="docker run -ti -v ~/Workspace/Dev-home:/workdir -v /Users/gbgarciaa/Workspace/Dev-home/.edgerc:/root/.edgerc -h akamai-cli akamai/shell bash"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
